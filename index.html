@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic Game</title>
+</head>
+<body>
+    <div id="game">
+        <p>Guess what letter I am thinking of..</p>
+        <p class="html">Wins: 0<br>Losses: 0<br>Guesses Left: 9<br>letters Guessed:</p>
+    
+    </div>
+    
+    <script type="text/javascript">
+    
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft = 9;
+        var lettersGuessed = "";
+        var html = "Wins: " + wins + "<br>Losses: " + losses + "<br>Guesses Left: " + guessesLeft + "<br>letters Guessed: " + lettersGuessed;
+    
+            var alphabet = "abcdefghijklmnopqrstuvwxyz";
+            var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+        document.onkeyup = function() {
+            var userGuess = event.key;
+        
+        
+    
+            if ((guessesLeft > 0) && (userGuess !== randomLetter)){
+                guessesLeft--;
+            }
+    
+            if (userGuess === randomLetter){
+                wins++;
+            } else if (guessesLeft === 0){
+                losses++;
+            } 
+    
+            lettersGuessed = lettersGuessed + userGuess;
+    
+            if ((lettersGuessed.length === 9 ) || (userGuess === randomLetter)){
+                lettersGuessed = "";
+                guessesLeft = 9
+                randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+            }
+            var html = "Wins: " + wins + "<br>Losses: " + losses + "<br>Guesses Left: " + guessesLeft + "<br>letters Guessed: " + lettersGuessed;
+            document.querySelector(".html").innerHTML = html;
+        }
+    </script>
+    </body>
+    </html>
+    
+</body>
+</html>
